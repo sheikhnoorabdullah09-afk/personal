@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026, My Friend ❤️</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #ffd89b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInScale 2s ease-out;
+            text-shadow: 0 0 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .hero-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #ffd89b;
+            animation: fadeIn 2.5s ease-out;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .photo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .photo-container {
+            position: relative;
+            width: clamp(250px, 80vw, 400px);
+            height: clamp(250px, 80vw, 400px);
+            animation: zoomIn 3s ease-out;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 8px;
+            box-shadow: 0 0 60px rgba(240, 147, 251, 0.6),
+                0 0 100px rgba(245, 87, 108, 0.4);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 60px rgba(240, 147, 251, 0.6),
+                    0 0 100px rgba(245, 87, 108, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 80px rgba(240, 147, 251, 0.8),
+                    0 0 120px rgba(245, 87, 108, 0.6);
+            }
+        }
+
+        .photo-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #16213e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ffd89b;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+        }
+
+        .message-section {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 60px 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .message-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message-section p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            line-height: 2;
+            color: #ffd89b;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .sparkle-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #f5576c;
+            font-weight: 700;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #f5576c, 0 0 20px #f093fb;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #f5576c, 0 0 40px #f093fb, 0 0 60px #ffd89b;
+            }
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(240, 147, 251, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(240, 147, 251, 0.7);
+        }
+
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .heart-float {
+            position: fixed;
+            font-size: 20px;
+            animation: floatUp 6s ease-in infinite;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .message-section {
+                margin: 40px 20px;
+                padding: 40px 30px;
+            }
+
+            .music-control {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Happy New Year 2026, My Friend ❤️</h1>
+            <p class="hero-subtitle">Together, Forever</p>
+        </section>
+
+        <section class="photo-section">
+            <div class="photo-container">
+                <div class="photo-frame">
+                    <div class="photo-inner">
+                        <img src="images/roja.jpeg" alt="Beautiful Photo"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="message-section">
+            <p>
+                Another year begins, and all I want is you by my side.
+                Every moment with you is my favorite story.
+                You make every day feel like magic, and every night feel like home.
+            </p>
+            <p class="sparkle-text">
+                Happy New Year 2026, my forever ❤️
+            </p>
+        </section>
+    </div>
+
+    <button class="music-control" id="musicBtn">🎵</button>
+    <audio id="bgMusic" loop autoplay muted>
+        <source src="images/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script>
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = this.randomColor();
+            }
+
+            randomColor() {
+                const colors = [
+                    'rgba(240, 147, 251, 0.8)',
+                    'rgba(245, 87, 108, 0.8)',
+                    'rgba(255, 216, 155, 0.8)',
+                    'rgba(255, 255, 255, 0.6)'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.message-section'));
+
+        // Music Control - Auto-play on page load
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = true;
+
+        bgMusic.addEventListener('loadedmetadata', () => {
+            console.log('Audio loaded successfully');
+        });
+
+        bgMusic.addEventListener('error', (e) => {
+            console.error('Audio error:', e);
+        });
+
+        bgMusic.addEventListener('play', () => {
+            console.log('Audio started playing');
+            isPlaying = true;
+            musicBtn.textContent = '⏸️';
+        });
+
+        bgMusic.addEventListener('pause', () => {
+            console.log('Audio paused');
+            isPlaying = false;
+            musicBtn.textContent = '🎵';
+        });
+
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                bgMusic.pause();
+            } else {
+                bgMusic.play().catch(err => console.error('Play error:', err));
+            }
+        });
+
+        // Auto-play when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                bgMusic.muted = false;
+                bgMusic.play().catch(err => console.error('Autoplay error:', err));
+            }, 500);
+        });
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * window.innerWidth + 'px';
+            firework.style.top = Math.random() * window.innerHeight * 0.5 + 'px';
+            firework.textContent = '✨';
+            firework.style.fontSize = Math.random() * 30 + 20 + 'px';
+            document.body.appendChild(firework);
+
+            setTimeout(() => firework.remove(), 2000);
+        }
+
+        setInterval(createFirework, 800);
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.bottom = '-50px';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 7000);
+        }
+
+        setInterval(createHeart, 1500);
+    </script>
+</body>
+
+</html>
